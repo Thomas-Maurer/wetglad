@@ -2,20 +2,44 @@
 
 namespace Wetglad
 {
-	public class EqOffensif:Equipement
+    public class EqOffensif : Equipement
 	{
-		double toucher;
-		public EqOffensif (string nomequip,int pointequip, double chancetouch):base(nomequip,pointequip)
+		int toucher;
+        int initiative;
+		public EqOffensif (string nomequip,int pointequip, int chancetouch):base(nomequip,pointequip)
 		{
 			toucher = chancetouch;
+            initiative = RandomNumber(1,100);
 		}
-		public void showStuff()
+		public override void showStuff()
 		{
-			Console.WriteLine ("Nom de l'équipement : "+base.getnomequipement());
-			Console.WriteLine ("Charge de l'équipement : "+base.getpointequipement());
-			Console.WriteLine ("Chance de toucher : "+(toucher *100).ToString()+"%");
+            base.showStuff();
+            Console.WriteLine("Chance de toucher : " + (toucher).ToString() + "%");
+            Console.WriteLine("Initiative : " + initiative.ToString());
 
 		}
+
+        public override int gettoucher()
+        {
+            return toucher;
+        }
+
+        public override int getinitiative()
+        {
+            return initiative;
+        }
+
+
+        //Function to get random number
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
 	}
 }
 

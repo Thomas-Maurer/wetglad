@@ -21,8 +21,12 @@ namespace Wetglad
 			descriptif = descriptifeq;
 			joueur = j;
 			mesGladiateurs = new List<Gladiateur>();
-			ratio = new Ratio (0, 0);
+            ratio = new Ratio(RandomNumber(1, 100), RandomNumber(1,100));
 		}
+        public Ratio getratio()
+        {
+            return ratio;
+        }
 		public string getid(){
 			return id_equipe.ToString ();
 		}
@@ -35,7 +39,16 @@ namespace Wetglad
 		public string getdescriptif(){
 			return descriptif;
 		}
-
+        //Function to get random number
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
 
 		// Show attribute of a team + show who own the team
 		public void showteam()
@@ -67,6 +80,72 @@ namespace Wetglad
 		{
 			glad.addeqtoglad (stuff);
 		}
+
+
+        public void fight(Equipe challenger)
+        {
+            
+            List<Gladiateur> Gladsurvivanteqthis = this.getmesglads();
+            List<Gladiateur> Gladsurvivanteqchallenger = challenger.getmesglads();
+
+            while (Gladsurvivanteqthis.Count > 0 && Gladsurvivanteqchallenger.Count > 0)
+            {
+                bool victoire = false;
+                Gladiateur gladbegin;
+                
+                gladbegin = Gladsurvivanteqthis[0].compareinitiative(Gladsurvivanteqchallenger[0]);
+                if (Gladsurvivanteqthis.Contains(gladbegin))
+                {
+                    //Equipe this commence
+                    while (!victoire)
+                    {
+                        
+                        gladbegin = Gladsurvivanteqthis[0];
+                        if (gladbegin.combat(Gladsurvivanteqchallenger[0]))
+                        {
+                            Gladsurvivanteqchallenger.Remove(Gladsurvivanteqchallenger[0]);
+                            victoire = true;
+                        }
+                        else
+                        {
+                            if (challenger.getmesglads()[0].combat(gladbegin))
+                            {
+                                Gladsurvivanteqthis.Remove(Gladsurvivanteqthis[0]);
+                                victoire = true;
+                            }
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    //equipe Challenger commence
+                    while (!victoire)
+                    {
+
+                        gladbegin = Gladsurvivanteqchallenger[0];
+                        if (gladbegin.combat(Gladsurvivanteqthis[0]))
+                        {
+                            Gladsurvivanteqthis.Remove(Gladsurvivanteqthis[0]);
+                            victoire = true;
+                        }
+                        else
+                        {
+                            if (Gladsurvivanteqthis[0].combat(gladbegin))
+                            {
+                                Gladsurvivanteqchallenger.Remove(Gladsurvivanteqchallenger[0]);
+                                victoire = true;
+                            }
+
+                        }
+                    }
+                }
+            }
+            Console.WriteLine("");
+            if (Gladsurvivanteqthis.Count > 0)
+                Console.WriteLine("L'équipe : "+ this.getnom() + "Remporte le Match");
+            else Console.WriteLine("L'équipe : " + challenger.getnom() + " Remporte le Match");
+       }
 	}
 }
 

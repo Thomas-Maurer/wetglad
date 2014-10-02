@@ -89,6 +89,7 @@ namespace Wetglad
 				team.showGlad ();
 			}
 		}
+        //Show gear of specific glad in specific team
 		public void showgear(Equipe eq, Gladiateur glad)
 		{
 			glad.showGear ();

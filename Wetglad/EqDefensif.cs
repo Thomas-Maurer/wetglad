@@ -4,18 +4,22 @@ namespace Wetglad
 {
 	public class EqDefensif:Equipement
 	{
-		double blocage;
-		public EqDefensif (string nomequip,int pointequip, double chancebloc):base(nomequip,pointequip)
+		int blocage;
+		public EqDefensif (string nomequip,int pointequip, int chancebloc):base(nomequip,pointequip)
 		{
 			blocage = chancebloc;
 		}
 
-		public void showStuff()
+		public override void showStuff()
 		{
-			Console.WriteLine ("Nom de l'équipement : "+base.getnomequipement());
-			Console.WriteLine ("Charge de l'équipement : "+base.getpointequipement());
-			Console.WriteLine ("Chance de blocage : "+(blocage *100).ToString()+"%");
+            base.showStuff();
+			Console.WriteLine ("Chance de blocage : "+(blocage).ToString()+"%");
 		}
+
+        public override int getblocage()
+        {
+            return blocage;
+        }
 	}
 }
 

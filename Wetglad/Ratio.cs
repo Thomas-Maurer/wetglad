@@ -4,10 +4,10 @@ namespace Wetglad
 {
 	public class Ratio
 	{
-		int defaite;
-		int victoire;
+		float defaite;
+		float victoire;
 
-		public Ratio (int vic, int def)
+		public Ratio (float vic, float def)
 		{
 			defaite = def;
 			victoire = vic;

@@ -1,0 +1,5 @@
+C:\Users\Thomas\Documents\Visual Studio 2012\Projects\wetlag\wetglad\Wetglad\obj\x86\Debug\Wetglad.exe
+C:\Users\Thomas\Documents\Visual Studio 2012\Projects\wetlag\wetglad\Wetglad\bin\Debug\Wetglad.exe
+C:\Users\Thomas\Documents\Visual Studio 2012\Projects\wetlag\wetglad\Wetglad\bin\Debug\Wetglad.pdb
+C:\Users\Thomas\Documents\Visual Studio 2012\Projects\wetlag\wetglad\Wetglad\obj\x86\Debug\Wetglad.csprojResolveAssemblyReference.cache
+C:\Users\Thomas\Documents\Visual Studio 2012\Projects\wetlag\wetglad\Wetglad\obj\x86\Debug\Wetglad.pdb
