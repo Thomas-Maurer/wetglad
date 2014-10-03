@@ -26,7 +26,20 @@ namespace Wetglad
 
         public void Duel()
         {
+            float nbvictoireeq0 = EquipeenMatch[0].getratio().getvictoire();
+            float nbvictoireeq1 = EquipeenMatch[1].getratio().getvictoire();
             EquipeenMatch[0].fight(EquipeenMatch[1]);
+
+            if (EquipeenMatch[0].getratio().getvictoire() > nbvictoireeq0)
+            {
+                id_equipe_gagnant = EquipeenMatch[0].getid();
+                id_equipe_perdant = EquipeenMatch[1].getid();
+            }else
+            {
+                id_equipe_gagnant = EquipeenMatch[1].getid();
+                id_equipe_perdant = EquipeenMatch[0].getid();
+            }
+            Console.WriteLine("Le match "+id_match + " Est remporté par l'équipe : " + EquipeenMatch.First(Equipe =>Equipe.getid() == id_equipe_gagnant).getnom());
 
         }
 

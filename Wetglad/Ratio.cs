@@ -21,11 +21,19 @@ namespace Wetglad
 			} else
 				return 0;
 		}
-		public string getvictoire(){
-			return victoire.ToString();
+        public float setvictoire()
+        {
+            return victoire++;
+        }
+        public float setdefaite()
+        {
+            return defaite++;
+        }
+		public float getvictoire(){
+			return victoire;
 		}
-		public string getdefaite(){
-			return defaite.ToString();
+		public float getdefaite(){
+			return defaite;
 		}
 	}
 }

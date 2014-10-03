@@ -5,7 +5,7 @@ namespace Wetglad
 	public class Equipe
 	{
 		static int nb_equipe =0;
-		int id_equipe;
+		protected int id_equipe;
 		string nom;
 		string descriptif;
 		Ratio ratio;
@@ -27,8 +27,8 @@ namespace Wetglad
         {
             return ratio;
         }
-		public string getid(){
-			return id_equipe.ToString ();
+		public int getid(){
+			return id_equipe;
 		}
 		public List<Gladiateur> getmesglads(){
 			return mesGladiateurs;
@@ -81,13 +81,15 @@ namespace Wetglad
 			glad.addeqtoglad (stuff);
 		}
 
-
-        public void fight(Equipe challenger)
+        // Return the looser of the fight
+        public Equipe fight(Equipe challenger)
         {
             
-            List<Gladiateur> Gladsurvivanteqthis = this.getmesglads();
-            List<Gladiateur> Gladsurvivanteqchallenger = challenger.getmesglads();
+            List<Gladiateur> Gladsurvivanteqthis = new List<Gladiateur>() ;
+            List<Gladiateur> Gladsurvivanteqchallenger = new List<Gladiateur>() ;
 
+            Gladsurvivanteqthis = this.getmesglads();
+            Gladsurvivanteqchallenger = challenger.getmesglads();
             while (Gladsurvivanteqthis.Count > 0 && Gladsurvivanteqchallenger.Count > 0)
             {
                 bool victoire = false;
@@ -143,8 +145,18 @@ namespace Wetglad
             }
             Console.WriteLine("");
             if (Gladsurvivanteqthis.Count > 0)
-                Console.WriteLine("L'équipe : "+ this.getnom() + "Remporte le Match");
-            else Console.WriteLine("L'équipe : " + challenger.getnom() + " Remporte le Match");
+            {
+                Console.WriteLine("L'équipe : " + this.getnom() + " Remporte le Match");
+                this.ratio.setvictoire();
+                challenger.ratio.setdefaite();
+                return (challenger);
+            }
+            else { 
+                Console.WriteLine("L'équipe : " + challenger.getnom() + " Remporte le Match");
+                challenger.ratio.setvictoire();
+                this.ratio.setdefaite();
+                return (this);
+            }
        }
 	}
 }
