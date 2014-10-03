@@ -14,7 +14,7 @@ namespace Wetglad
         int id_equipe_perdant;
         List<Equipe> EquipeenMatch = new List<Equipe>();
 
-
+        //Constructeur
         public Match(Equipe eq1, Equipe eq2)
         {
             nb_match++;
@@ -23,13 +23,15 @@ namespace Wetglad
             EquipeenMatch.Add(eq2);
         }
 
-
+        // Begin the fight against 2 equips
         public void Duel()
         {
             float nbvictoireeq0 = EquipeenMatch[0].getratio().getvictoire();
             float nbvictoireeq1 = EquipeenMatch[1].getratio().getvictoire();
+
             EquipeenMatch[0].fight(EquipeenMatch[1]);
 
+            //Determine who win the match
             if (EquipeenMatch[0].getratio().getvictoire() > nbvictoireeq0)
             {
                 id_equipe_gagnant = EquipeenMatch[0].getid();

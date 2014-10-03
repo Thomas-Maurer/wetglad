@@ -12,7 +12,7 @@ namespace Wetglad
 		Joueur joueur;
 		List<Gladiateur> mesGladiateurs;
 
-
+        //Constructeur
 		public Equipe (string nomequipe,string descriptifeq, Joueur j)
 		{
 			nb_equipe++;
@@ -23,6 +23,22 @@ namespace Wetglad
 			mesGladiateurs = new List<Gladiateur>();
             ratio = new Ratio(RandomNumber(1, 100), RandomNumber(1,100));
 		}
+
+        //Function to get random number
+        private static readonly Random random = new Random();
+        private static readonly object syncLock = new object();
+        public static int RandomNumber(int min, int max)
+        {
+            lock (syncLock)
+            { // synchronize
+                return random.Next(min, max);
+            }
+        }
+
+        /// <summary>
+        /// GETER
+        /// </summary>
+
         public Ratio getratio()
         {
             return ratio;
@@ -39,16 +55,7 @@ namespace Wetglad
 		public string getdescriptif(){
 			return descriptif;
 		}
-        //Function to get random number
-        private static readonly Random random = new Random();
-        private static readonly object syncLock = new object();
-        public static int RandomNumber(int min, int max)
-        {
-            lock (syncLock)
-            { // synchronize
-                return random.Next(min, max);
-            }
-        }
+        
 
 		// Show attribute of a team + show who own the team
 		public void showteam()
@@ -90,11 +97,12 @@ namespace Wetglad
 
             Gladsurvivanteqthis = this.getmesglads();
             Gladsurvivanteqchallenger = challenger.getmesglads();
+
             while (Gladsurvivanteqthis.Count > 0 && Gladsurvivanteqchallenger.Count > 0)
             {
                 bool victoire = false;
                 Gladiateur gladbegin;
-                
+                //Dertemine which glad will begin the fight
                 gladbegin = Gladsurvivanteqthis[0].compareinitiative(Gladsurvivanteqchallenger[0]);
                 if (Gladsurvivanteqthis.Contains(gladbegin))
                 {
@@ -146,13 +154,13 @@ namespace Wetglad
             Console.WriteLine("");
             if (Gladsurvivanteqthis.Count > 0)
             {
-                Console.WriteLine("L'équipe : " + this.getnom() + " Remporte le Match\n");
+                Console.WriteLine(this.getnom() + " Remporte le Match contre "+challenger.getnom()+"\n");
                 this.ratio.setvictoire();
                 challenger.ratio.setdefaite();
                 return (challenger);
             }
-            else { 
-                Console.WriteLine("L'équipe : " + challenger.getnom() + " Remporte le Match\n");
+            else {
+                Console.WriteLine(challenger.getnom() + " Remporte le Match contre " + this.getnom() + "\n");
                 challenger.ratio.setvictoire();
                 this.ratio.setdefaite();
                 return (this);

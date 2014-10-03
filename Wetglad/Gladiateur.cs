@@ -117,25 +117,28 @@ namespace Wetglad
         //Check if one glad kill another ( check block + touch)
         public bool attaque(Gladiateur challengerglad)
         {
-            if (touche(this.getWeapons()[0]))
+            List<EqOffensif> Armes = this.getWeapons();
+            List<EqDefensif> Protections = challengerglad.getprotect();
+            if (touche(Armes[0]))
             {
-                if (challengerglad.getprotect().Count > 0 && block(challengerglad.getprotect()[0]))
+
+                if (Protections.Count > 0 && block(Protections[0]))
                 {
                     //attaque réussi mais bloqué
-                    Console.WriteLine(" Attaque de " + this.getnom() + " bloqué par " + challengerglad.getnom());
+                    Console.WriteLine(" Attaque de " + this.getnom() + " bloqué par " + challengerglad.getnom()+" avec "+challengerglad.getprotect()[0].getnomequipement());
                     return false;
                 }
                 //attaque réussi
                 else
                 {
-                    Console.WriteLine(" Attaque de " + this.getnom() + " touche " + challengerglad.getnom());
+                    Console.WriteLine(" Attaque de " + this.getnom() + " touche " + challengerglad.getnom() + " avec " + this.getWeapons()[0].getnomequipement());
                     return true;
                 }
             }
             //Attaque fail
             else
             {
-                Console.WriteLine(" Attaque de " + this.getnom() + " loupe " + challengerglad.getnom());
+                Console.WriteLine(" Attaque de " + this.getnom() + " loupe " + challengerglad.getnom() + " avec " + this.getWeapons()[0].getnomequipement());
                 return false;
             }
         }
@@ -143,6 +146,7 @@ namespace Wetglad
         //Check if the glad block or not
         public bool block(EqDefensif defense)
         {
+
             int block = RandomNumber(1, 100);
             return block <= defense.getblocage();
 
