@@ -39,7 +39,7 @@ namespace Wetglad
                 id_equipe_gagnant = EquipeenMatch[1].getid();
                 id_equipe_perdant = EquipeenMatch[0].getid();
             }
-            Console.WriteLine("Le match "+id_match + " Est remporté par l'équipe : " + EquipeenMatch.First(Equipe =>Equipe.getid() == id_equipe_gagnant).getnom());
+            Console.WriteLine("Le match "+id_match + " Est remporté par l'équipe : " + EquipeenMatch.First(Equipe =>Equipe.getid() == id_equipe_gagnant).getnom()+'\n');
 
         }
 

@@ -146,13 +146,13 @@ namespace Wetglad
             Console.WriteLine("");
             if (Gladsurvivanteqthis.Count > 0)
             {
-                Console.WriteLine("L'équipe : " + this.getnom() + " Remporte le Match");
+                Console.WriteLine("L'équipe : " + this.getnom() + " Remporte le Match\n");
                 this.ratio.setvictoire();
                 challenger.ratio.setdefaite();
                 return (challenger);
             }
             else { 
-                Console.WriteLine("L'équipe : " + challenger.getnom() + " Remporte le Match");
+                Console.WriteLine("L'équipe : " + challenger.getnom() + " Remporte le Match\n");
                 challenger.ratio.setvictoire();
                 this.ratio.setdefaite();
                 return (this);
