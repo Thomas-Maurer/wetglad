@@ -9,30 +9,37 @@ namespace Wetglad
     class Tournois
     {
         List<Equipe> EquipesParticipantes;
+
+        //Constructeur
         public Tournois()
         {
             EquipesParticipantes = new List<Equipe>();
         }
 
+        //Add one equipe to a tournois
         public void addEquipetoTn(Equipe eq)
         {
             EquipesParticipantes.Add(eq);
             TrieElo();
         }
 
+        //Sort all teams by ratio
         public void TrieElo()
         {
 
                 EquipesParticipantes = EquipesParticipantes.OrderByDescending(Equipe => Equipe.getratio().getratio()).ToList<Equipe>();
         }
 
+        //Show all teams who participe to a tournois
         public void showEquip()
         {
             foreach (Equipe eq in EquipesParticipantes)
             {
-                Console.WriteLine(eq.getnom() + " Ratio de : "+ eq.getratio().getratio());
+                Console.WriteLine(eq.getnom() + " Ratio de : "+ eq.getratio().getratio()+"\n");
             }
         }
+
+        //Function who start all the tournois and initialise the fight against each equipe
         public void Matchmaking()
         {
             int compteur=0;

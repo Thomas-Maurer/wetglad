@@ -79,10 +79,6 @@ namespace Wetglad
             j4.addstufftoglad(j4.getequipe(0), j4.getequipe(0).getmesglads()[0], dague);
             j4.addstufftoglad(j4.getequipe(0), j4.getequipe(0).getmesglads()[0], casque);
 
-
-            Console.WriteLine("");
-            Console.WriteLine("");
-
             // Add equipe to our Tn
             t1.addEquipetoTn(j1.getequipe(0));
             t1.addEquipetoTn(j2.getequipe(0));
